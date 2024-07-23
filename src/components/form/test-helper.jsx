@@ -1,10 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { FormProvider, useForm } from "react-hook-form"
+import { z } from "zod"
 
 export const FormProviderWrapperComponent = ({
-  schema,
   children,
 }) => {
+  const schema = z.object({
+    test: z.number().min(1),
+  })
+
   const methods = useForm({
     resolver: zodResolver(schema),
   })
